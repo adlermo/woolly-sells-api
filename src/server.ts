@@ -1,17 +1,43 @@
 import express from 'express';
+import bodyParser from 'body-parser';
+import index from './routes/index';
+import pool from './common/postgres-connector';
 
-import { Router, Request, Response } from 'express';
+class Server {
+  private app;
 
-const app = express();
+  constructor() {
+    this.app = express();
+    this.config();
+    this.routerConfig();
+    this.dbConnect();
+  }
 
-const route = Router();
+  private config() {
+    this.app.use(bodyParser.urlencoded({ extended: true }));
+    this.app.use(bodyParser.json({ limit: '1mb' })); // 100kb default
+  }
 
-app.use(express.json());
+  private dbConnect() {
+    pool.connect(function (err, _client, _done) {
+      if (err) throw new Error(err.message);
+      console.log('Connected');
+    });
+  }
 
-route.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'hello world with Typescript' });
-});
+  private routerConfig() {
+    this.app.use('/', index);
+  }
 
-app.use(route);
+  public start = (port: number) => {
+    return new Promise((resolve, reject) => {
+      this.app
+        .listen(port, () => {
+          resolve(port);
+        })
+        .on('error', (err: Object) => reject(err));
+    });
+  };
+}
 
-app.listen(3333, () => 'server running on port 3333');
+export default Server;
