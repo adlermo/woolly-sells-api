@@ -26,6 +26,7 @@ class UsersController {
 
   public async create(req: Request, res: Response) {
     const { name, email, password } = req.body;
+    // TODO validate mandatory creation params
 
     console.info(`USERS -> POST | Creating user ${name}`);
 

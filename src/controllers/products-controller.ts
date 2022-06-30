@@ -3,13 +3,16 @@ import pool from '../common/postgres-connector';
 
 class ProductsController {
   public async getAll(req: Request, res: Response) {
-    console.info(`PRODUCTS -> GET  | Fetching products list`);
+    const { user_id } = req.query;
+    // TODO validate  mandatory query param
+
+    console.info(`PRODUCTS -> GET  | Fetching products for user ${user_id}`);
 
     try {
       const client = await pool.connect();
 
-      const sql = 'SELECT * FROM products';
-      const { rows } = await client.query(sql);
+      const sql = 'SELECT * FROM products WHERE user_id = $1';
+      const { rows } = await client.query(sql, [user_id]);
       const products = rows;
 
       client.release();
@@ -24,6 +27,7 @@ class ProductsController {
 
   public async create(req: Request, res: Response) {
     const { user_id, name, description, price } = req.body;
+    // TODO validate mandatory creation params
 
     console.info(
       `PRODUCTS -> POST | Creating product ${name} to user ${user_id}`
