@@ -34,7 +34,7 @@ class ProductsController {
     try {
       const client = await pool.connect();
 
-      const sql = `INSERT INTO products(id_product, user_id, name, description, price, published_at) VALUES(nextval('products_sequence').$1,$2,$3,$4,$5);`;
+      const sql = `INSERT INTO products(id_product, user_id, name, description, price, published_at) VALUES(nextval('products_sequence'),$1,$2,$3,$4,$5);`;
       const values = [user_id, name, description, price, new Date()];
 
       let result = await client.query(sql, values);
