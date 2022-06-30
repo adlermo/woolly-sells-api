@@ -3,7 +3,7 @@ import pool from '../common/postgres-connector';
 
 class UsersController {
   public async getAll(req: Request, res: Response) {
-    console.info(`USERS -> GET | Fetching users list`);
+    console.info(`USERS -> GET  | Fetching users list`);
 
     try {
       const client = await pool.connect();
@@ -17,9 +17,9 @@ class UsersController {
 
       res.send(users);
 
-      console.info(`USERS -> GET | Succesfully fetched!`);
+      console.info(`USERS -> GET  | Succesfully fetched!`);
     } catch (error) {
-      console.error(`USERS -> GET | Failed fetching!`);
+      console.error(`USERS -> GET  | Failed fetching!`);
       res.status(400).send(error);
     }
   }
@@ -27,7 +27,7 @@ class UsersController {
   public async create(req: Request, res: Response) {
     const { name, email, password } = req.body;
 
-    console.info(`USERS -> POST | Creating user ${JSON.stringify(req.body)}`);
+    console.info(`USERS -> POST | Creating user ${name}`);
 
     try {
       const client = await pool.connect();

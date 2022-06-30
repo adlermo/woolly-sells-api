@@ -3,7 +3,7 @@ import pool from '../common/postgres-connector';
 
 class ProductsController {
   public async getAll(req: Request, res: Response) {
-    console.info(`PRODUCTS -> GET | Fetching products list`);
+    console.info(`PRODUCTS -> GET  | Fetching products list`);
 
     try {
       const client = await pool.connect();
@@ -15,9 +15,9 @@ class ProductsController {
       client.release();
 
       res.send(products);
-      console.info(`PRODUCTS -> GET | Succesfully fetched!`);
+      console.info(`PRODUCTS -> GET  | Succesfully fetched!`);
     } catch (error) {
-      console.error(`PRODUCTS -> GET | Failed fetching!`);
+      console.error(`PRODUCTS -> GET  | Failed fetching!`);
       res.status(400).send(error);
     }
   }
@@ -26,9 +26,7 @@ class ProductsController {
     const { user_id, name, description, price } = req.body;
 
     console.info(
-      `PRODUCTS -> POST | Creating product ${JSON.stringify(
-        req.body
-      )} to user ${user_id}`
+      `PRODUCTS -> POST | Creating product ${name} to user ${user_id}`
     );
 
     try {
