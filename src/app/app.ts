@@ -1,14 +1,14 @@
 require('dotenv').config();
 
-import server from '../server';
+import Server from '../server';
 
-const port = parseInt(process.env.PORT || '4000');
+const port = parseInt(process.env.PORT || '8080');
 
-const starter = new server()
+const starter = new Server()
   .start(port)
   .then((port) => console.log(`Running on port ${port}`))
   .catch((error) => {
-    console.log(error);
+    console.error(error);
   });
 
 export default starter;
