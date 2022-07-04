@@ -8,7 +8,7 @@ We need you to build basically a CRUD of products of e-commerce with some requir
 
 User stories:
 
-- As a user, I want to create a product with at least these fields: name, description, price and published_at
+- As a user, I want to create a product with at least these fields: name, description, price and published_at 
 
 - As a user, I want to upload one or more images to the product.
 
@@ -18,7 +18,7 @@ User stories:
 
 - As a user, I want to confirm my email to start using the application
 
-- As a guest, I want to sign up and sign in to the application
+- As a guest, I want to sign up and sign in to the application ✅
 
 - As a new user, I need to confirm my email address to start using the application
 

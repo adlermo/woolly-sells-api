@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import index from './routes/index';
 import pool from './common/postgres-connector';
@@ -14,6 +15,14 @@ class Server {
   }
 
   private config() {
+    const allowedOrigins = ['http://localhost:3000'];
+
+    const options: cors.CorsOptions = {
+      origin: allowedOrigins,
+    };
+
+    this.app.use(cors(options));
+    // Allowgin CORS Policy to my app
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json({ limit: '1mb' })); // 100kb default
   }
