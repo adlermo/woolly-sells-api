@@ -8,23 +8,23 @@ We need you to build basically a CRUD of products of e-commerce with some requir
 
 User stories:
 
-- As a user, I want to create a product with at least these fields: name, description, price and published_at 
+- As a guest, I want to sign up and sign in to the application ✅
 
-- As a user, I want to upload one or more images to the product.
+- As a user, I want to create a product with at least these fields: name, description, price and published_at ✅
 
-- As a user, I want to list all the products I've created.
+- As a user, I want to list all the products I've created. ✅
 
 - As a user, I want to update and soft delete a product
 
-- As a user, I want to confirm my email to start using the application
+- As a user, I want to upload one or more images to the product.
 
-- As a guest, I want to sign up and sign in to the application ✅
+- As a user, I want to confirm my email to start using the application
 
 - As a new user, I need to confirm my email address to start using the application
 
 ### Requirements:
 
-Technologies you must use but not only: React, Typescript, Nodejs, PostgreSQL
+Technologies you must use but not only: React, Typescript, Nodejs, PostgreSQL ✅
 
 All emails should be sent in background jobs not affecting user experience. You can use Mailtrap as a server for testing purposes.
 
